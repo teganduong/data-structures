@@ -7,7 +7,9 @@ var Stack = function() {
 
   // Implement the methods below
   someInstance.push = function(value) {
+    storage[value];
     items++;
+
   };
 
   someInstance.pop = function() {
@@ -15,7 +17,7 @@ var Stack = function() {
   };
 
   someInstance.size = function() {
-    return items;;
+    return Math.max(0,items);
   };
 
   return someInstance;
