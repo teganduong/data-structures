@@ -4,6 +4,8 @@ var Queue = function() {
   // Use an object with numeric keys to store values
   var storage = {};
   var items = 0;
+  //var index=0;
+  var result;
 
   // Implement the methods below
 
@@ -14,8 +16,17 @@ var Queue = function() {
 
   someInstance.dequeue = function() {
     items--;
-    return storage[0];
+    result = storage[0];
+    delete storage[0];
+    for (var i = 0 ; i < items ; i++) {
+      storage[i] = storage[i+1];
+    }
+    return result;
   };
+
+    //if(someInstance.dequeue()){
+      //delete storage[0];
+    //}
 
   someInstance.size = function() {
     return Math.max(0, items);
