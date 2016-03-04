@@ -79,4 +79,3 @@ Graph.prototype.forEachNode = function(cb) {
 
 
 var graph = new Graph();
-
