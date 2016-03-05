@@ -1,5 +1,5 @@
 var BinarySearchTree = function(value) {
-  var node = Object.create(treeMethods);
+  var node = Object.create(biTreeMethods);
   node.value = value;
   node.left = null;
   node.right = null;
@@ -7,9 +7,9 @@ var BinarySearchTree = function(value) {
   return node;
 };
 
-var treeMethods = {};
+var biTreeMethods = {};
 
-treeMethods.insert = function(value) {
+biTreeMethods.insert = function(value) {
   // create a instance node with the value
   var currentNode = BinarySearchTree(value);
   //Compare the root node value and the current value
@@ -29,7 +29,7 @@ treeMethods.insert = function(value) {
 
 };
 
-treeMethods.contains = function(value) {
+biTreeMethods.contains = function(value) {
   var nodevalue = this.value;
   var result = false;
   //base case check value with nodevalue
@@ -44,12 +44,11 @@ treeMethods.contains = function(value) {
 
 };
 
-treeMethods.depthFirstLog = function(cb) {
+biTreeMethods.depthFirstLog = function(cb) {
   cb(this.value);
   if (this.left) {
     this.left = this.left.depthFirstLog(cb);
-  } 
-  else if (this.right) {
+  } else if (this.right) {
     this.right = this.right.depthFirstLog(cb);
   }
 
