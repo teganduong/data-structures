@@ -3,25 +3,43 @@
 var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
-  this.arrayVals = [];
+  //this.array = [];
+  
 };
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.array = [];
-  this._storage.array[0] = k;
-  this._storage.array[1] = v;
-  this._storage.set(index, this._storage.array);
+  var array = this._storage.get(index) || [];
+
+    
+  array.push([k, v]);
+  this._storage.set(index, array);
 };
 
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  return this._storage.get(index);
+  var array = this._storage.get(index);
+  var value;
+  _.each(array, function(element) {
+    if (element[0] === k ) {
+      value = element[1];
+    }
+  });
+  return value;
 };
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  this.arrayVals[index + 1] = undefined;
+  var array = this._storage.get(index);
+  
+  _.each(array, function(element) {
+    if (element[0] === k ) {
+      array = _.without(array,element);
+    }
+  });
+  this._storage.set(index, array);
+      
+   
 };
 
 
